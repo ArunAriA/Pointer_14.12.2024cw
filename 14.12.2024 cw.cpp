@@ -1,8 +1,27 @@
 ﻿#include <iostream>
+#include <algorithm>
+#include <vector>
 
 using namespace std;
 
-int swapedArr(int size, int* arr)
+void printF(int size, int* arr)
+{
+    for (int i = 0; i < size; i++)
+    {
+        cout << *(arr + i) << ' ';
+    }
+    cout << endl;
+}
+
+void randNum(int size, int* arr)
+{
+    for (int i = 0; i < size; i++)
+    {
+        *(arr + i)= rand() % 10;
+    }
+}
+
+void swapedArr(int size, int* arr)
 {
     int counter = 1;
 
@@ -15,30 +34,21 @@ int swapedArr(int size, int* arr)
         
     }
 
-    return 0;
 }
 
 int main()
 {
     srand(time(NULL));
 
-    const int size = 10;
-    int arr[size];
-    int *ptr = arr;
+    cout << "Enter massive size: ";
+    int size;
+    cin >> size;
+    int* arr = new int[size];
 
-    for (int i = 0; i < size; i++)
-    {
-        arr[i] = rand() % 10;
-        cout << arr[i] << ' ';
-    }
-
-    cout << endl;
-
-    swapedArr(size, ptr);
-
-    for (int i = 0; i < size; i++)
-    {
-        cout << arr[i] << ' ';
-    }
-
+    randNum(size, arr);
+    printF(size, arr);
+    swapedArr(size, arr);
+    printF(size, arr);
+    
+    delete[] arr;
 }
