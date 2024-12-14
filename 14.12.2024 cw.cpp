@@ -2,7 +2,11 @@
 #include <algorithm>
 #include <vector>
 
+
+
 using namespace std;
+
+
 
 //void printF(int size, int* arr)
 //{
@@ -72,7 +76,35 @@ void printF(int size, int* arr)
 	}
 }
 
+int printMenu(int size, int *arr, int* arr2, int sellect)
+{
+	int index = 0;
+	
 
+	for (int i = 0; i < size; i++)
+	{
+		if (sellect == 1)
+		{
+			if (*(arr + i) % 2 != 0)
+			{
+				*(arr2 + index) = *(arr + i);
+				index++;
+			}
+		}
+		if (sellect == 2)
+		{
+			if (*(arr + i) % 2 == 0)
+			{
+				*(arr2 + index) = *(arr + i);
+				index++;
+			}
+		}
+	}
+
+	return index;
+}
+
+// 2 parne
 
 int main()
 {
@@ -81,6 +113,19 @@ int main()
 	cin >> size;
 
 	int* arr = new int[size];
+	
+	int* arr2 = new int[size];
+	
 	enterNum(size, arr);
 	printF(size, arr);
+	cout << endl << "Select delete num - 1 ne panrni / 2 parni: " << endl;
+	int sel;
+	cin >> sel;
+	
+	int index = printMenu(size, arr, arr2, sel);
+	printF(index, arr2);
+
+
+	delete[] arr;
+	delete[] arr2;
 }
